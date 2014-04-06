@@ -22,7 +22,7 @@ public class CanvasItem {
 	private String description;
 	
 	@Persistent
-	private String creator;
+	private String author;
 	
 	
 	public Long getId() {
@@ -49,10 +49,10 @@ public class CanvasItem {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCreator() {
-		return creator;
+	public String getAuthor() {
+		return author;
 	}
-	public void setCreator(String creator) {
-		this.creator = creator;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }
