@@ -166,7 +166,7 @@ public class CanvasItemEndpoint {
 	 * @param id the primary key of the entity to be deleted.
 	 */
 	@ApiMethod(name = "Item.delete")
-	public void removeCanvasItem(@Named("id") String id) {
+	public void removeCanvasItem(@Named("id") Long id) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
 			CanvasItem canvasitem = mgr.getObjectById(CanvasItem.class, id);
