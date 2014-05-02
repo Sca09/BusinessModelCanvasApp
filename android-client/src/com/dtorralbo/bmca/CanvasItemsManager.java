@@ -1,8 +1,10 @@
 package com.dtorralbo.bmca;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import android.content.Context;
 
@@ -67,6 +69,47 @@ public class CanvasItemsManager {
 		if(listCanvasItem == null) {
 			listCanvasItem = new ArrayList<CanvasItem>();
 		}
+		
+		//TODO creating fake id for testing
+		if(canvasItem.getId() == null) {
+			Long id = new Random().nextLong();
+			canvasItem.setId(id);
+		}
+		//TODO creating fake id for testing
+		
+		listCanvasItem.add(canvasItem);
+		
+		canvasItemsSingleton.put(canvasItemCategory, listCanvasItem);
+		
+		return canvasItemsSingleton;
+	}
+	
+	public static HashMap<String, List<CanvasItem>> updateCanvasItem(CanvasItem canvasItem) {
+		Collection<List<CanvasItem>> values = canvasItemsSingleton.values();
+		
+		for(List<CanvasItem> list : values) {
+			if(list != null) {
+				for(CanvasItem item : list) {
+					if(item.getId().equals(canvasItem.getId())){
+						list.remove(item);
+						break;
+					}
+				}			
+			}
+		}
+		
+		String canvasItemCategory = canvasItem.getCategory();
+		List<CanvasItem> listCanvasItem = canvasItemsSingleton.get(canvasItemCategory);
+		if(listCanvasItem == null) {
+			listCanvasItem = new ArrayList<CanvasItem>();
+		}
+		
+		//TODO creating fake id for testing
+		if(canvasItem.getId() == null) {
+			Long id = new Random().nextLong();
+			canvasItem.setId(id);
+		}
+		//TODO creating fake id for testing
 		
 		listCanvasItem.add(canvasItem);
 		

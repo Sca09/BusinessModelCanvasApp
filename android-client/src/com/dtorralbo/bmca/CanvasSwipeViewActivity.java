@@ -12,6 +12,7 @@ import com.dtorralbo.bmca.adapters.SectionsPagerAdapter;
 public class CanvasSwipeViewActivity extends FragmentActivity {
 
 	private static final int REQUEST_CODE_RESOLVE_ERR_NEW_ACTIVITY = 5000;
+	private static final int REQUEST_CODE_RESOLVE_ERR_UPDATE_ITEM = 6000;
 	
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -63,6 +64,14 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 			if(resultCode == RESULT_OK) {
 				mSectionsPagerAdapter.notifyDataSetChanged();
 				
+				int pickedCategory = data.getIntExtra("pickedCategory", -1);
+				openTab(pickedCategory);
+			}
+			break;
+		case REQUEST_CODE_RESOLVE_ERR_UPDATE_ITEM:
+			if(resultCode == RESULT_OK) {
+				mSectionsPagerAdapter.notifyDataSetChanged();
+			
 				int pickedCategory = data.getIntExtra("pickedCategory", -1);
 				openTab(pickedCategory);
 			}

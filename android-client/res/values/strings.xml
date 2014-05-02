@@ -7,7 +7,10 @@
 	<string name="new_item_author_hint">Insert Author</string>
     <string name="cancel_text">Cancel</string>
     <string name="add_text">Add</string>
+    <string name="set_text">Set</string>
     <string name="new_item_text">New Activity</string>
+    <string name="adding_new_activity_text">Adding new activity</string>
+    <string name="updating_activity_text">Updating activity</string>
     <string name="action_settings">Settings</string>
     <string name="prompt_category">Choose Category</string>
 </resources>

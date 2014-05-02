@@ -30,12 +30,26 @@ public enum Category {
 		return null;
 	}
 	
+	public static Category getCategory(String name) {
+		for (Category category : Category.values()) {
+			if (category.getName().equalsIgnoreCase(name)) {
+				return category;
+			}
+		}
+		
+		return null;
+	}
+	
 	public static int getCount() {
 		return Category.values().length;
 	}
 	
 	public static String getNameByIndex(int index) {
 		return Category.getCategory(index).getName();
+	}
+	
+	public static int getIndexByName(String name) {
+		return Category.getCategory(name).getIndex();
 	}
 	
 	public int getIndex() {
