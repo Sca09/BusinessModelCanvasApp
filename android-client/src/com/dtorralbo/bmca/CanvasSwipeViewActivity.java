@@ -11,6 +11,8 @@ import com.dtorralbo.bmca.adapters.SectionsPagerAdapter;
 
 public class CanvasSwipeViewActivity extends FragmentActivity {
 
+	private static final int REQUEST_CODE_RESOLVE_ERR_NEW_ACTIVITY = 5000;
+	
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
@@ -47,7 +49,7 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 		case R.id.action_add:
 			Intent intent = new Intent(this, NewCanvasItemActivity.class);
 			intent.putExtra("currentCategory", mViewPager.getCurrentItem());
-			startActivity(intent);
+			startActivityForResult(intent, REQUEST_CODE_RESOLVE_ERR_NEW_ACTIVITY);
 			break;
 		}
 

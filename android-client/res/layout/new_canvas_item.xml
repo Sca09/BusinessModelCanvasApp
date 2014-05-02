@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/newItemCategory"
         android:layout_margin="5dp"
-        android:inputType="textAutoCorrect"
+        android:inputType="textAutoCorrect|textCapWords"
         android:hint="@string/new_item_title_hint" />
     
     <EditText
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/newItemTitle"
         android:layout_margin="5dp"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textAutoCorrect|textCapSentences"
         android:hint="@string/new_item_description_hint" />
     
     <EditText
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/newItemDescription"
         android:layout_margin="5dp"
-        android:inputType="textEmailAddress"
+        android:inputType="textEmailAddress|textAutoCorrect"
         android:hint="@string/new_item_author_hint" />
     
     <RelativeLayout

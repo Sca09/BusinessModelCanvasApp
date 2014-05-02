@@ -6,10 +6,11 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-public class NewCanvasItemActivity extends Activity {
+public class NewCanvasItemActivity extends Activity implements View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class NewCanvasItemActivity extends Activity {
 		int currentCategory = intent.getIntExtra("currentCategory", -1);
 		setCategorySpinner(currentCategory);
 		
+		findViewById(R.id.cancelButton).setOnClickListener(this);
 	}
 
 	private void setCategorySpinner(int currentCategory) {
@@ -37,6 +39,15 @@ public class NewCanvasItemActivity extends Activity {
 		
 		if(currentCategory > -1 && currentCategory < Category.values().length) {
 			categorySpinner.setSelection(currentCategory);
+		}
+	}
+
+	@Override
+	public void onClick(View view) {
+		switch(view.getId()) {
+		case R.id.cancelButton:
+			finish();
+			break;
 		}
 	}	
 }
