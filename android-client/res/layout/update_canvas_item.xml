@@ -63,7 +63,7 @@
             android:background="@color/blue_base" />
 
         <Button
-            android:id="@+id/cancelButton"
+            android:id="@+id/deleteItemButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -71,7 +71,7 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/ViewColorPickerHelper"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@string/cancel_text" />
+            android:text="@string/delete_text" />
 
         <Button
             android:id="@+id/setCanvasItemButton"

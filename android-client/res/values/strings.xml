@@ -6,6 +6,7 @@
 	<string name="new_item_description_hint">Insert Description</string>
 	<string name="new_item_author_hint">Insert Author</string>
     <string name="cancel_text">Cancel</string>
+    <string name="delete_text">Delete</string>
     <string name="add_text">Add</string>
     <string name="set_text">Set</string>
     <string name="new_item_text">New Activity</string>

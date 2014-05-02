@@ -29,7 +29,7 @@ public class UpdateCanvasItemActivity extends Activity implements View.OnClickLi
 		setItemData(itemToUpdate, categoryToUpdate);
 		
 		findViewById(R.id.setCanvasItemButton).setOnClickListener(this);
-		findViewById(R.id.cancelButton).setOnClickListener(this);
+		findViewById(R.id.deleteItemButton).setOnClickListener(this);
 	}
 
 	private void setItemData(Long itemToUpdate, String categoryToUpdate) {
@@ -81,7 +81,8 @@ public class UpdateCanvasItemActivity extends Activity implements View.OnClickLi
 			setCanvasItem(view);
 			finish();
 			break;
-		case R.id.cancelButton:
+		case R.id.deleteItemButton:
+			deleteCanvasItem(view);
 			finish();
 			break;
 		}		
@@ -113,5 +114,34 @@ public class UpdateCanvasItemActivity extends Activity implements View.OnClickLi
 		returnIntent.putExtra("pickedCategory", category.getIndex());
 		
 		setResult(RESULT_OK, returnIntent);
+	}
+	
+	private void deleteCanvasItem(View view) {
+		TextView idTextView = (TextView) findViewById(R.id.updateItemId); 
+//		Spinner categorySpinner = (Spinner) findViewById(R.id.updateItemCategory);
+//		EditText titleEditText = (EditText) findViewById(R.id.updateItemTitle);
+//		EditText descriptionEditText = (EditText) findViewById(R.id.updateItemDescription);
+//		EditText authorEditText = (EditText) findViewById(R.id.updateItemAuthor);
+		
+		Long id = Long.valueOf(idTextView.getText().toString());
+//		Category category = Category.getCategory(categorySpinner.getSelectedItemPosition());
+//		String title = titleEditText.getText().toString();
+//		String description = descriptionEditText.getText().toString();
+//		String author = authorEditText.getText().toString();
+		
+//		CanvasItem item = new CanvasItem();
+//		item.setId(id);
+//		item.setCategory(category.getName());
+//		item.setTitle(title);
+//		item.setDescription(description);
+//		item.setAuthor(author);
+		
+		CanvasItemsManager.deleteCanvasItem(id);
+		
+//		Intent returnIntent = new Intent();
+//		returnIntent.putExtra("pickedCategory", category.getIndex());
+//		setResult(RESULT_OK, returnIntent);
+		
+		setResult(RESULT_OK);
 	}
 }

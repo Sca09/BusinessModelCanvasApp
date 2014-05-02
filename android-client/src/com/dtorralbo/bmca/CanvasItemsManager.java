@@ -52,7 +52,7 @@ public class CanvasItemsManager {
 		CanvasItem item3 = new CanvasItem();
 		item3.setId(3L);
 		item3.setTitle("title3");
-		item3.setDescription("Lorem ipsum dolor sit amet, sollicitudin massa lobortis sed a mus quisque, ac neque, ante euismod nascetur aliquam ornare sagittis risus. Enim quam etiam dolor, vestibulum et cras. Dis libero curabitur consequat porta, diam pede neque justo tellus cras, lacinia arcu viverra integer. Imperdiet malesuada sit, vulputate nonummy pede metus. Scelerisque ipsum ut. Lacus leo, lectus et egestas, nec amet dictum suspendisse, lacinia iaculis, vestibulum ut sed pellentesque. Commodo dui consectetuer mus ipsum, fusce tincidunt natoque morbi elit, viverra pulvinar ridiculus phasellus adipiscing, tempus nunc lacinia etiam metus eleifend quis, wisi at libero molestie mattis lectus hendrerit. Turpis mattis ut, turpis dolor vulputate nec sit.");
+		item3.setDescription("Lorem ipsum dolor sit amet, sollicitudin massa lobortis sed a mus quisque, ac neque, ante euismod nascetur aliquam ornare sagittis risus.");
 		item3.setCategory(Category.KEY_ACTIVITIES.getName());
 		item3.setAuthor("davidtorralbo@gmail.com");
 		keyActivitiesList.add(item3);
@@ -117,5 +117,22 @@ public class CanvasItemsManager {
 		
 		return canvasItemsSingleton;
 	}
+	
+	public static HashMap<String, List<CanvasItem>> deleteCanvasItem(Long canvasItemId) {
+		Collection<List<CanvasItem>> values = canvasItemsSingleton.values();
+		
+		for(List<CanvasItem> list : values) {
+			if(list != null) {
+				for(CanvasItem item : list) {
+					if(item.getId().equals(canvasItemId)){
+						list.remove(item);
+						break;
+					}
+				}			
+			}
+		}
+		
+		return canvasItemsSingleton;
+	} 
 	
 }

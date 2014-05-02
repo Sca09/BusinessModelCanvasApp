@@ -65,15 +65,21 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 				mSectionsPagerAdapter.notifyDataSetChanged();
 				
 				int pickedCategory = data.getIntExtra("pickedCategory", -1);
-				openTab(pickedCategory);
+				if(pickedCategory > -1) {
+					openTab(pickedCategory);
+				}
 			}
 			break;
 		case REQUEST_CODE_RESOLVE_ERR_UPDATE_ITEM:
 			if(resultCode == RESULT_OK) {
 				mSectionsPagerAdapter.notifyDataSetChanged();
 			
-				int pickedCategory = data.getIntExtra("pickedCategory", -1);
-				openTab(pickedCategory);
+				if(data != null) {
+					int pickedCategory = data.getIntExtra("pickedCategory", -1);
+					if(pickedCategory > -1) {
+						openTab(pickedCategory);
+					}
+				}
 			}
 			break;
 		}
