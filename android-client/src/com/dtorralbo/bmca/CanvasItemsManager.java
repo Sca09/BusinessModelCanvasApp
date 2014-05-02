@@ -22,7 +22,7 @@ public class CanvasItemsManager {
 	}
 
 	
-	private static HashMap<String, List<CanvasItem>> getCanvasItems(Context context) {
+	public static HashMap<String, List<CanvasItem>> getCanvasItems(Context context) {
 		
 		HashMap<String, List<CanvasItem>> canvasItemsSingleton = new HashMap<String, List<CanvasItem>>();
 		
@@ -57,6 +57,20 @@ public class CanvasItemsManager {
 		
 		canvasItemsSingleton.put(Category.KEY_PARTNERS.getName(), keyPartnersList);
 		canvasItemsSingleton.put(Category.KEY_ACTIVITIES.getName(), keyActivitiesList);
+		
+		return canvasItemsSingleton;
+	}
+	
+	public static HashMap<String, List<CanvasItem>> addCanvasItem(CanvasItem canvasItem) {
+		String canvasItemCategory = canvasItem.getCategory();
+		List<CanvasItem> listCanvasItem = canvasItemsSingleton.get(canvasItemCategory);
+		if(listCanvasItem == null) {
+			listCanvasItem = new ArrayList<CanvasItem>();
+		}
+		
+		listCanvasItem.add(canvasItem);
+		
+		canvasItemsSingleton.put(canvasItemCategory, listCanvasItem);
 		
 		return canvasItemsSingleton;
 	}

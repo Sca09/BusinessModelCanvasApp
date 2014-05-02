@@ -42,7 +42,9 @@ public class CanvasItemAdapter extends ArrayAdapter<CanvasItem> {
 		holder.itemAuthor = (TextView) row.findViewById(R.id.itemAuthor);
 		
 		CanvasItem item = data.get(position);
-		holder.itemId.setText(item.getId().toString());
+		if(item.getId() != null) {
+			holder.itemId.setText(item.getId().toString());
+		}
 		holder.itemTitle.setText(item.getTitle());
 		holder.itemDescription.setText(item.getDescription());
 		holder.itemCategory.setText(item.getCategory());

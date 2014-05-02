@@ -68,7 +68,7 @@
             android:text="@string/cancel_text" />
 
         <Button
-            android:id="@+id/setAlarmButton"
+            android:id="@+id/addCanvasItemButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -76,7 +76,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/ViewColorPickerHelper"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@string/set_text" />
+            android:text="@string/add_text" />
         
         <View
             android:layout_width="match_parent"

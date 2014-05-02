@@ -58,13 +58,19 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		switch (requestCode) {
-//		
-//		}
+		switch (requestCode) {
+		case REQUEST_CODE_RESOLVE_ERR_NEW_ACTIVITY:
+			if(resultCode == RESULT_OK) {
+				mSectionsPagerAdapter.notifyDataSetChanged();
+				
+				int pickedCategory = data.getIntExtra("pickedCategory", -1);
+				openTab(pickedCategory);
+			}
+			break;
+		}
 	}
 	
-	public void openTab(String timeZoneSelected) {
-//		int tzSelectedPosition = mSectionsPagerAdapter.getListTimeZones().lastIndexOf(timeZoneSelected);
-//		mViewPager.setCurrentItem(tzSelectedPosition + 1);
+	public void openTab(int pickedCategory) {
+		mViewPager.setCurrentItem(pickedCategory);
 	}
 }

@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.appspot.businessmodelcanvasapp.bmca.model.CanvasItem;
 
 public class NewCanvasItemActivity extends Activity implements View.OnClickListener {
 
@@ -21,6 +24,7 @@ public class NewCanvasItemActivity extends Activity implements View.OnClickListe
 		int currentCategory = intent.getIntExtra("currentCategory", -1);
 		setCategorySpinner(currentCategory);
 		
+		findViewById(R.id.addCanvasItemButton).setOnClickListener(this);
 		findViewById(R.id.cancelButton).setOnClickListener(this);
 	}
 
@@ -45,9 +49,39 @@ public class NewCanvasItemActivity extends Activity implements View.OnClickListe
 	@Override
 	public void onClick(View view) {
 		switch(view.getId()) {
+		case R.id.addCanvasItemButton:
+			addCanvasItem(view);
+			finish();
+			break;
 		case R.id.cancelButton:
 			finish();
 			break;
 		}
+	}
+
+	private void addCanvasItem(View view) {
+		
+		Spinner categorySpinner = (Spinner) findViewById(R.id.newItemCategory);
+		EditText titleEditText = (EditText) findViewById(R.id.newItemTitle);
+		EditText descriptionEditText = (EditText) findViewById(R.id.newItemDescription);
+		EditText authorEditText = (EditText) findViewById(R.id.newItemAuthor);
+		
+		Category category = Category.getCategory(categorySpinner.getSelectedItemPosition());
+		String title = titleEditText.getText().toString();
+		String description = descriptionEditText.getText().toString();
+		String author = authorEditText.getText().toString();
+		
+		CanvasItem item = new CanvasItem();
+		item.setCategory(category.getName());
+		item.setTitle(title);
+		item.setDescription(description);
+		item.setAuthor(author);
+		
+		CanvasItemsManager.addCanvasItem(item);
+		
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("pickedCategory", category.getIndex());
+		
+		setResult(RESULT_OK, returnIntent);
 	}	
 }
