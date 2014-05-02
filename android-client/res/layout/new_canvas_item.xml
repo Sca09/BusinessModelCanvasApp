@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+    
+    <Spinner
+        android:id="@+id/newItemCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:prompt="@string/prompt_category" />
+    
+    <EditText
+        android:id="@+id/newItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newItemCategory"
+        android:layout_margin="5dp"
+        android:inputType="textAutoCorrect"
+        android:hint="@string/new_item_title_hint" />
+    
+    <EditText
+        android:id="@+id/newItemDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newItemTitle"
+        android:layout_margin="5dp"
+        android:inputType="textMultiLine"
+        android:hint="@string/new_item_description_hint" />
+    
+    <EditText
+        android:id="@+id/newItemAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newItemDescription"
+        android:layout_margin="5dp"
+        android:inputType="textEmailAddress"
+        android:hint="@string/new_item_author_hint" />
+    
+    <RelativeLayout
+        android:id="@+id/buttonsPanel"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/newItemAuthor"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true" >
+
+        <View
+            android:id="@+id/ViewColorPickerHelper"
+            android:layout_width="1dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/blue_base" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/ViewColorPickerHelper"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/cancel_text" />
+
+        <Button
+            android:id="@+id/setAlarmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ViewColorPickerHelper"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/set_text" />
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/ViewColorPickerHelper"
+            android:background="@color/blue_base" />
+
+    </RelativeLayout>
+    
+    
+</RelativeLayout>

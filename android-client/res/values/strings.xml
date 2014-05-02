@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMCA</string>
+	<string name="go_home">Home</string>
+	<string name="new_item_title_hint">Insert Title</string>
+	<string name="new_item_description_hint">Insert Description</string>
+	<string name="new_item_author_hint">Insert Author</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="set_text">Set</string>
+    <string name="new_item_text">New Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="prompt_category">Choose Category</string>
+</resources>

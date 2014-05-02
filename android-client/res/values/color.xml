@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_base">#000e77</color>
+    <color name="appwidget_text">#ffffff</color>
+    <color name="item_bg">#fcfcfc</color>
+    <color name="item_border">#dbdbdb</color>
+</resources>
