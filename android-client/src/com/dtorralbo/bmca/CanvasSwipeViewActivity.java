@@ -37,13 +37,6 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 
 		showDialog(DIALOG1_KEY);
 		initData();
-		
-		// mSectionsPagerAdapter = new
-		// SectionsPagerAdapter(getSupportFragmentManager(),
-		// getApplicationContext());
-		//
-		// mViewPager = (ViewPager) findViewById(R.id.pager);
-		// mViewPager.setAdapter(mSectionsPagerAdapter);
 	}
 
 	@Override
@@ -78,8 +71,21 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 		case R.id.action_add:
 			Intent intent = new Intent(this, NewCanvasItemActivity.class);
 			intent.putExtra("currentCategory", mViewPager.getCurrentItem());
-			startActivityForResult(intent,
-					REQUEST_CODE_RESOLVE_ERR_NEW_ACTIVITY);
+			startActivityForResult(intent, REQUEST_CODE_RESOLVE_ERR_NEW_ACTIVITY);
+			break;
+			
+		case R.id.action_refresh:
+			showDialog(DIALOG1_KEY);
+			
+			CanvasItemsManager manager = CanvasItemsManager.getInstance(getApplicationContext());
+			manager.forceListCanvasItems(new OnCanvasItemsListedListener() {
+				
+				@Override
+				public void onCanvasItemsListed(HashMap<String, List<CanvasItem>> canvasItems) {
+					dismissDialog(DIALOG1_KEY);
+					mSectionsPagerAdapter.notifyDataSetChanged();
+				}
+			});
 			break;
 		}
 
@@ -119,7 +125,6 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 	}
 
 	private void initData() {
-
 		CanvasItemsManager manager = CanvasItemsManager.getInstance(this);
 
 		manager.listCanvasItems(new OnCanvasItemsListedListener() {

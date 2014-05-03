@@ -13,6 +13,12 @@
         android:icon="@drawable/ic_menu_home"
         android:title="@string/go_home"/>
     <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="@string/refresh"/>
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"

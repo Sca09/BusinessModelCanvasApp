@@ -54,6 +54,11 @@ public class CanvasItemsManager {
 		}
 	}
 	
+	public void forceListCanvasItems(OnCanvasItemsListedListener onCanvasItemsListedListener) {
+		ListCanvasItemTask task = new ListCanvasItemTask(onCanvasItemsListedListener);
+		task.execute();
+	}
+	
 	public void addCanvasItem(CanvasItem item, OnCanvasItemAddedListener onCanvasItemAddedListener) {
 		AddCanvasItemTask task = new AddCanvasItemTask(onCanvasItemAddedListener);
 		task.execute(item);

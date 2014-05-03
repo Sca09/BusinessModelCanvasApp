@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">BMCA</string>
 	<string name="go_home">Home</string>
+	<string name="refresh">Refresh</string>
 	<string name="new_item_title_hint">Insert Title</string>
 	<string name="new_item_description_hint">Insert Description</string>
 	<string name="new_item_author_hint">Insert Author</string>
