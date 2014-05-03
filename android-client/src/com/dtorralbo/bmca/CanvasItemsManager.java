@@ -1,138 +1,265 @@
 package com.dtorralbo.bmca;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
+import com.appspot.businessmodelcanvasapp.bmca.Bmca;
 import com.appspot.businessmodelcanvasapp.bmca.model.CanvasItem;
+import com.appspot.businessmodelcanvasapp.bmca.model.CollectionResponseCanvasItem;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.json.jackson.JacksonFactory;
 
 public class CanvasItemsManager {
-
+	
+	private static CanvasItemsManager managerSingleton = null; 
+	
+	private static Bmca service = null; 
+	
 	private static HashMap<String, List<CanvasItem>> canvasItemsSingleton = null;
 	
-	public synchronized static HashMap<String, List<CanvasItem>> getCanvasItemsInstance(Context context) {
+	public synchronized static CanvasItemsManager getInstance(Context context) {
+		if(service == null) {
+			Bmca.Builder builder = new Bmca.Builder(AndroidHttp.newCompatibleTransport(), new JacksonFactory(), null);
+			service = builder.build();
+		}
 		
+		if(managerSingleton == null) {
+			managerSingleton = new CanvasItemsManager();
+		}
+		
+		return managerSingleton;
+	}
+	
+	/* PUBLIC SERVICES */
+	public HashMap<String, List<CanvasItem>> getCanvasItemsInstance(){
 		if(canvasItemsSingleton == null) {
-			canvasItemsSingleton = getCanvasItems(context);
+			canvasItemsSingleton = new HashMap<String, List<CanvasItem>>();
 		}
 		
 		return canvasItemsSingleton;
 	}
+	
+	
+	public void listCanvasItems(OnCanvasItemsListedListener onCanvasItemsListedListener) {
+		if(canvasItemsSingleton == null) {
+			ListCanvasItemTask task = new ListCanvasItemTask(onCanvasItemsListedListener);
+			task.execute();
+		} else {
+			onCanvasItemsListedListener.onCanvasItemsListed(canvasItemsSingleton);
+		}
+	}
+	
+	public void addCanvasItem(CanvasItem item, OnCanvasItemAddedListener onCanvasItemAddedListener) {
+		AddCanvasItemTask task = new AddCanvasItemTask(onCanvasItemAddedListener);
+		task.execute(item);
+	}
+	
+	public void updateCanvasItem(CanvasItem item, OnCanvasItemUpdatedListener onCanvasItemUpdatedListener) {
+		UpdateCanvasItemTask task = new UpdateCanvasItemTask(onCanvasItemUpdatedListener);
+		task.execute(item);
+	}
+	
+	public void deleteCanvasItem(Long id, OnCanvasItemDeletedListener onCanvasItemDeletedListener) {
+		DeleteCanvasItemTask task = new DeleteCanvasItemTask(onCanvasItemDeletedListener);
+		task.execute(id);
+	}
+	
+	
+	/* ASYNCHRONOUS TASK */
+	
+	private class ListCanvasItemTask extends AsyncTask<Void, Void, HashMap<String, List<CanvasItem>>> {
 
-	
-	public static HashMap<String, List<CanvasItem>> getCanvasItems(Context context) {
+		OnCanvasItemsListedListener onCanvasItemsListedListener = null;
 		
-		HashMap<String, List<CanvasItem>> canvasItemsSingleton = new HashMap<String, List<CanvasItem>>();
-		
-		List<CanvasItem> keyPartnersList = new ArrayList<CanvasItem>();
-		
-		CanvasItem item1 = new CanvasItem();
-		item1.setId(1L);
-		item1.setTitle("title1");
-		item1.setDescription("Description1");
-		item1.setCategory(Category.KEY_PARTNERS.getName());
-		item1.setAuthor("davidtorralbo@gmail.com");
-		keyPartnersList.add(item1);
-		
-		CanvasItem item2 = new CanvasItem();
-		item2.setId(2L);
-		item2.setTitle("title2");
-		item2.setDescription("Description2");
-		item2.setCategory(Category.KEY_PARTNERS.getName());
-		item2.setAuthor("davidtorralbo@gmail.com");
-		keyPartnersList.add(item2);
-		
-		
-		List<CanvasItem> keyActivitiesList = new ArrayList<CanvasItem>();
-		
-		CanvasItem item3 = new CanvasItem();
-		item3.setId(3L);
-		item3.setTitle("title3");
-		item3.setDescription("Lorem ipsum dolor sit amet, sollicitudin massa lobortis sed a mus quisque, ac neque, ante euismod nascetur aliquam ornare sagittis risus.");
-		item3.setCategory(Category.KEY_ACTIVITIES.getName());
-		item3.setAuthor("davidtorralbo@gmail.com");
-		keyActivitiesList.add(item3);
-		
-		canvasItemsSingleton.put(Category.KEY_PARTNERS.getName(), keyPartnersList);
-		canvasItemsSingleton.put(Category.KEY_ACTIVITIES.getName(), keyActivitiesList);
-		
-		return canvasItemsSingleton;
-	}
-	
-	public static HashMap<String, List<CanvasItem>> addCanvasItem(CanvasItem canvasItem) {
-		String canvasItemCategory = canvasItem.getCategory();
-		List<CanvasItem> listCanvasItem = canvasItemsSingleton.get(canvasItemCategory);
-		if(listCanvasItem == null) {
-			listCanvasItem = new ArrayList<CanvasItem>();
+		public ListCanvasItemTask(OnCanvasItemsListedListener onCanvasItemsListedListener) {
+			this.onCanvasItemsListedListener = onCanvasItemsListedListener;
 		}
 		
-		//TODO creating fake id for testing
-		if(canvasItem.getId() == null) {
-			Long id = new Random().nextLong();
-			canvasItem.setId(id);
-		}
-		//TODO creating fake id for testing
-		
-		listCanvasItem.add(canvasItem);
-		
-		canvasItemsSingleton.put(canvasItemCategory, listCanvasItem);
-		
-		return canvasItemsSingleton;
-	}
-	
-	public static HashMap<String, List<CanvasItem>> updateCanvasItem(CanvasItem canvasItem) {
-		Collection<List<CanvasItem>> values = canvasItemsSingleton.values();
-		
-		for(List<CanvasItem> list : values) {
-			if(list != null) {
-				for(CanvasItem item : list) {
-					if(item.getId().equals(canvasItem.getId())){
-						list.remove(item);
-						break;
-					}
-				}			
+		@Override
+		protected HashMap<String, List<CanvasItem>> doInBackground(Void... params) {
+			HashMap<String, List<CanvasItem>> result = null;
+			
+			try {
+				CollectionResponseCanvasItem itemsCollection = service.item().list().execute();
+				
+				List<CanvasItem> items = itemsCollection.getItems();
+				
+				result = getItemsMap(items);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+			
+			return result;
 		}
 		
-		String canvasItemCategory = canvasItem.getCategory();
-		List<CanvasItem> listCanvasItem = canvasItemsSingleton.get(canvasItemCategory);
-		if(listCanvasItem == null) {
-			listCanvasItem = new ArrayList<CanvasItem>();
+		@Override
+		protected void onPostExecute(HashMap<String, List<CanvasItem>> result) {
+			canvasItemsSingleton = result;
+			this.onCanvasItemsListedListener.onCanvasItemsListed(canvasItemsSingleton);
 		}
-		
-		//TODO creating fake id for testing
-		if(canvasItem.getId() == null) {
-			Long id = new Random().nextLong();
-			canvasItem.setId(id);
-		}
-		//TODO creating fake id for testing
-		
-		listCanvasItem.add(canvasItem);
-		
-		canvasItemsSingleton.put(canvasItemCategory, listCanvasItem);
-		
-		return canvasItemsSingleton;
 	}
 	
-	public static HashMap<String, List<CanvasItem>> deleteCanvasItem(Long canvasItemId) {
-		Collection<List<CanvasItem>> values = canvasItemsSingleton.values();
+	private class AddCanvasItemTask extends AsyncTask<CanvasItem, Void, HashMap<String, List<CanvasItem>>> {
+
+		OnCanvasItemAddedListener onCanvasItemAddedListener = null;
 		
-		for(List<CanvasItem> list : values) {
-			if(list != null) {
-				for(CanvasItem item : list) {
-					if(item.getId().equals(canvasItemId)){
-						list.remove(item);
-						break;
-					}
-				}			
+		public AddCanvasItemTask(OnCanvasItemAddedListener onCanvasItemAddedListener) {
+			this.onCanvasItemAddedListener = onCanvasItemAddedListener;
+		}
+
+		@Override
+		protected HashMap<String, List<CanvasItem>> doInBackground(CanvasItem... canvasItems) {
+			HashMap<String, List<CanvasItem>> result = null;
+			
+			try {
+			
+				for(CanvasItem item : canvasItems) {
+					service.item().add(item).execute();
+				}
+				
+				CollectionResponseCanvasItem itemsCollection = service.item().list().execute();
+				
+				List<CanvasItem> items = itemsCollection.getItems();
+				
+				result = getItemsMap(items);
+				
+			
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+			
+			return result;
 		}
 		
-		return canvasItemsSingleton;
-	} 
+		@Override
+		protected void onPostExecute(HashMap<String, List<CanvasItem>> result) {
+			canvasItemsSingleton = result;
+			this.onCanvasItemAddedListener.onCanvasItemAdded(canvasItemsSingleton);
+		}
+	}
 	
+	private class UpdateCanvasItemTask extends AsyncTask<CanvasItem, Void, HashMap<String, List<CanvasItem>>> {
+
+		OnCanvasItemUpdatedListener onCanvasItemUpdatedListener = null;
+		
+		public UpdateCanvasItemTask(OnCanvasItemUpdatedListener onCanvasItemUpdatedListener) {
+			this.onCanvasItemUpdatedListener = onCanvasItemUpdatedListener;
+		}
+		
+		@Override
+		protected HashMap<String, List<CanvasItem>> doInBackground(CanvasItem... canvasItems) {
+			HashMap<String, List<CanvasItem>> result = null;
+			
+			try {
+			
+				for(CanvasItem item : canvasItems) {
+					service.item().update(item).execute();
+				}
+				
+				CollectionResponseCanvasItem itemsCollection = service.item().list().execute();
+				
+				List<CanvasItem> items = itemsCollection.getItems();
+				
+				result = getItemsMap(items);
+				
+			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(HashMap<String, List<CanvasItem>> result) {
+			canvasItemsSingleton = result;
+			this.onCanvasItemUpdatedListener.onCanvasItemUpdated(canvasItemsSingleton);
+		}
+	}
+	
+	private class DeleteCanvasItemTask extends AsyncTask<Long, Void, HashMap<String, List<CanvasItem>>> {
+
+		OnCanvasItemDeletedListener onCanvasItemDeletedListener = null;
+		
+		public DeleteCanvasItemTask(OnCanvasItemDeletedListener onCanvasItemDeletedListener) {
+			this.onCanvasItemDeletedListener = onCanvasItemDeletedListener;
+		}
+		
+		@Override
+		protected HashMap<String, List<CanvasItem>> doInBackground(Long... ids) {
+			HashMap<String, List<CanvasItem>> result = null;
+			
+			try {
+			
+				for(Long id : ids) {
+					service.item().delete(id).execute();
+				}
+				
+				CollectionResponseCanvasItem itemsCollection = service.item().list().execute();
+				
+				List<CanvasItem> items = itemsCollection.getItems();
+				
+				result = getItemsMap(items);
+				
+			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(HashMap<String, List<CanvasItem>> result) {
+			canvasItemsSingleton = result;
+			this.onCanvasItemDeletedListener.onCanvasItemDeleted(canvasItemsSingleton);
+		}
+	}
+	
+	
+	private HashMap<String, List<CanvasItem>> getItemsMap(List<CanvasItem> items) {
+
+		HashMap<String, List<CanvasItem>> itemsMap = new HashMap<String, List<CanvasItem>>();
+		
+		for(CanvasItem item : items) {
+			
+			String category = item.getCategory();
+			
+			List<CanvasItem> list = itemsMap.get(category);
+			
+			if(list == null) {
+				list = new ArrayList<CanvasItem>();
+			}
+			
+			list.add(item);
+			
+			itemsMap.put(category, list);
+		}
+		
+		return itemsMap;
+	}
+	
+	
+	/* INTERFACES FOR CALLBACKS */
+	public interface OnCanvasItemsListedListener {
+		void onCanvasItemsListed(HashMap<String, List<CanvasItem>> canvasItems);
+	}
+	
+	public interface OnCanvasItemAddedListener {
+		void onCanvasItemAdded(HashMap<String, List<CanvasItem>> canvasItems);
+	}
+	
+	public interface OnCanvasItemUpdatedListener {
+		void onCanvasItemUpdated(HashMap<String, List<CanvasItem>> canvasItems);
+	}
+	
+	public interface OnCanvasItemDeletedListener {
+		void onCanvasItemDeleted(HashMap<String, List<CanvasItem>> canvasItems);
+	}
 }
