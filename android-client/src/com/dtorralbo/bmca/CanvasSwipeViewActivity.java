@@ -64,10 +64,6 @@ public class CanvasSwipeViewActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.action_home:
-			mViewPager.setCurrentItem(0);
-			break;
-
 		case R.id.action_add:
 			Intent intent = new Intent(this, NewCanvasItemActivity.class);
 			intent.putExtra("currentCategory", mViewPager.getCurrentItem());
