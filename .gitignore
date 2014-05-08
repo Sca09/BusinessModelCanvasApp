@@ -1,2 +1,3 @@
 android-client/bin/
 server-side/endpoint-libs/
+server-side/war/WEB-INF/appengine-generated/
