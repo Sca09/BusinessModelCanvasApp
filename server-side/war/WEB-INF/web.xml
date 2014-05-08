@@ -7,7 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	
+
 	<servlet>
 		<servlet-name>InitBoardServlet</servlet-name>
 		<servlet-class>com.dtorralbo.bmca.channel.BoardServlet</servlet-class>
@@ -16,10 +16,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>InitBoardServlet</servlet-name>
 		<url-pattern>/board</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>TestBoardServlet</servlet-name>
-		<servlet-class>com.dtorralbo.bmca.channel.SendMessageServlet</servlet-class>
+		<servlet-class>com.dtorralbo.bmca.channel.SendMessageServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TestBoardServlet</servlet-name>
@@ -39,4 +40,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<url-pattern>/_ah/spi/*</url-pattern>
 	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 </web-app>
