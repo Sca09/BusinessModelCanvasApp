@@ -12,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 
 import com.dtorralbo.bmca.CanvasItem;
 import com.dtorralbo.bmca.PMF;
+import com.dtorralbo.bmca.channel.BoardUpdateService;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
@@ -110,6 +111,9 @@ public class CanvasItemEndpoint {
 		} finally {
 			mgr.close();
 		}
+		
+		BoardUpdateService.addCanvasItemNotification(canvasitem.getId());
+		
 		return canvasitem;
 	}
 
@@ -132,6 +136,9 @@ public class CanvasItemEndpoint {
 		} finally {
 			mgr.close();
 		}
+		
+		BoardUpdateService.updateCanvasItemNotification(canvasitem.getId());
+		
 		return canvasitem;
 	}
 	
@@ -174,6 +181,8 @@ public class CanvasItemEndpoint {
 		} finally {
 			mgr.close();
 		}
+		
+		BoardUpdateService.deleteCanvasItemNotification(id);
 	}
 
 	private boolean containsCanvasItem(CanvasItem canvasitem) {
