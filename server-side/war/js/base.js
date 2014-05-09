@@ -13,74 +13,63 @@ google.endpoints.bmcaApi.init = function(apiRoot) {
 };
 
 
-google.endpoints.bmcaApi.added = function(id) {
-	console.log(id[0]);
+google.endpoints.bmcaApi.added = function(message) {
+	var id = message.id;
+	var action = message.action;
+	
 	gapi.client.bmca.item.get({'id': id[0]}).execute(function(resp) {
 		if (resp) {
-			document.getElementById("action").innerHTML = "add";
-			document.getElementById("id").innerHTML = resp.id;
-			document.getElementById("title").innerHTML = resp.title;
-			document.getElementById("description").innerHTML = resp.description;
-			document.getElementById("category").innerHTML = resp.category;
-			document.getElementById("author").innerHTML = resp.author;
+			google.endpoints.bmcaApi.log(action, resp, message.user_agent);
+			
 		}
 	
 	});
 }
 
-google.endpoints.bmcaApi.updated = function(id) {
-	console.log(id[0]);
+google.endpoints.bmcaApi.updated = function(message) {
+	var id = message.id;
+	var action = message.action;
+
 	gapi.client.bmca.item.get({'id': id[0]}).execute(function(resp) {
 		if (resp) {
-			document.getElementById("action").innerHTML = "update";
-			document.getElementById("id").innerHTML = resp.id;
-			document.getElementById("title").innerHTML = resp.title;
-			document.getElementById("description").innerHTML = resp.description;
-			document.getElementById("category").innerHTML = resp.category;
-			document.getElementById("author").innerHTML = resp.author;
+			google.endpoints.bmcaApi.log(action, resp, message.user_agent);
 		}
 	
 	});
 }
 
-google.endpoints.bmcaApi.deleted = function(id) {
-	console.log(id[0]);
-	
-	document.getElementById("action").innerHTML = "deleted";
-	document.getElementById("id").innerHTML = id;
-	document.getElementById("title").innerHTML = "";
-	document.getElementById("description").innerHTML = "";
-	document.getElementById("category").innerHTML = "";
-	document.getElementById("author").innerHTML = "";
+google.endpoints.bmcaApi.deleted = function(message) {	
+	google.endpoints.bmcaApi.log(message.action, message, message.user_agent);
+}
+
+google.endpoints.bmcaApi.log = function(action, resp, user_agent) {
+	var canvasItem = document.createElement('tr');
+	canvasItem.innerHTML = "<td>"+ action +"</td><td>"+ user_agent +"</td><td>"+ resp.id +"</td><td>"+ resp.category +"</td><td>"+ resp.title +"</td><td>"+ resp.author +"</td>";
+	document.getElementById("log_table").appendChild(canvasItem);
 }
 
 // Channel API functions
 onOpened = function() {
 	console.log("channel connected");
-	var output = 'opened';
-	document.getElementById("action").innerHTML = output;
 };
 
 onError = function() {
-	var output = 'error';
-	document.getElementById("action").innerHTML = output;
+	console.log("channel error");
 };
 
 onClose = function() {
-	var output = 'closed';
-	document.getElementById("action").innerHTML = output;
+	console.log("channel closed");
 }
 
 onMessage = function(m) {
 	message = JSON.parse(m.data);
 	action = message.action;
-	id = message.id;
 	
 	if(action == "add") {
-		google.endpoints.bmcaApi.added(id);
+		google.endpoints.bmcaApi.added(message);
 	} else if(action == "update") {
-		google.endpoints.bmcaApi.updated(id);
+		google.endpoints.bmcaApi.updated(message);
 	} else if(action == "delete") {
-		google.endpoints.bmcaApi.deleted(id);
+		google.endpoints.bmcaApi.deleted(message);
 	}
 }

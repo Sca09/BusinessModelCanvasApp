@@ -9,6 +9,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletRequest;
 
 import com.dtorralbo.bmca.CanvasItem;
 import com.dtorralbo.bmca.PMF;
@@ -99,7 +100,7 @@ public class CanvasItemEndpoint {
 	 * @return The inserted entity.
 	 */
 	@ApiMethod(name = "Item.add")
-	public CanvasItem insertCanvasItem(CanvasItem canvasitem) {
+	public CanvasItem insertCanvasItem(CanvasItem canvasitem, HttpServletRequest request) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
 			if(canvasitem.getId() != null) {
@@ -112,7 +113,7 @@ public class CanvasItemEndpoint {
 			mgr.close();
 		}
 		
-		BoardUpdateService.addCanvasItemNotification(canvasitem.getId());
+		BoardUpdateService.addCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
 		
 		return canvasitem;
 	}
@@ -126,7 +127,7 @@ public class CanvasItemEndpoint {
 	 * @return The updated entity.
 	 */
 	@ApiMethod(name = "Item.update")
-	public CanvasItem updateCanvasItem(CanvasItem canvasitem) {
+	public CanvasItem updateCanvasItem(CanvasItem canvasitem, HttpServletRequest request) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
 			if (!containsCanvasItem(canvasitem)) {
@@ -137,7 +138,7 @@ public class CanvasItemEndpoint {
 			mgr.close();
 		}
 		
-		BoardUpdateService.updateCanvasItemNotification(canvasitem.getId());
+		BoardUpdateService.updateCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
 		
 		return canvasitem;
 	}
@@ -173,16 +174,16 @@ public class CanvasItemEndpoint {
 	 * @param id the primary key of the entity to be deleted.
 	 */
 	@ApiMethod(name = "Item.delete")
-	public void removeCanvasItem(@Named("id") Long id) {
+	public void removeCanvasItem(@Named("id") Long id, HttpServletRequest request) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
 			CanvasItem canvasitem = mgr.getObjectById(CanvasItem.class, id);
+			BoardUpdateService.deleteCanvasItemNotification(canvasitem ,request.getHeader("User-Agent"));
+
 			mgr.deletePersistent(canvasitem);
 		} finally {
 			mgr.close();
 		}
-		
-		BoardUpdateService.deleteCanvasItemNotification(id);
 	}
 
 	private boolean containsCanvasItem(CanvasItem canvasitem) {

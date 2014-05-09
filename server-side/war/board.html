@@ -10,20 +10,26 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Business Model Canvas</title>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/_ah/channel/jsapi"></script>
 <script type="text/javascript" src="/js/base.js"></script>
+<link type="text/css" rel="stylesheet" href="/css/base.css">
 </head>
 
 <body>
+	<div class="CSSTableGenerator">
+		<table id=log_table>
+			<tr>
+				<td>Action</td>
+				<td>User Agent</td>
+				<td>Id</td>
+				<td>Category</td>
+				<td>Title</td>
+				<td>Author</td>
+			</tr>
+		</table>
+	</div>
 
-	Action:<div id="action"></div>
-	Id:<div id="id"></div>
-	Title:<div id="title"></div>
-	Description:<div id="description"></div>
-	Category:<div id="category"></div>
-	Author:<div id="author"></div>
-	
 
 	<script type="text/javascript">
 
@@ -46,6 +52,7 @@
 	initialize = function() {
 		openChannel();
 		
+		//google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
 		google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
 	}
 
