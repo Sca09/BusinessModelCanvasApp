@@ -232,19 +232,21 @@ public class CanvasItemsManager {
 
 		HashMap<String, List<CanvasItem>> itemsMap = new HashMap<String, List<CanvasItem>>();
 		
-		for(CanvasItem item : items) {
-			
-			String category = item.getCategory();
-			
-			List<CanvasItem> list = itemsMap.get(category);
-			
-			if(list == null) {
-				list = new ArrayList<CanvasItem>();
+		if(items != null) {
+			for(CanvasItem item : items) {
+				
+				String category = item.getCategory();
+				
+				List<CanvasItem> list = itemsMap.get(category);
+				
+				if(list == null) {
+					list = new ArrayList<CanvasItem>();
+				}
+				
+				list.add(item);
+				
+				itemsMap.put(category, list);
 			}
-			
-			list.add(item);
-			
-			itemsMap.put(category, list);
 		}
 		
 		return itemsMap;
