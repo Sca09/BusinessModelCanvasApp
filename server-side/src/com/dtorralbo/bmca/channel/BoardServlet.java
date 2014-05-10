@@ -25,7 +25,7 @@ public class BoardServlet extends HttpServlet {
 		ChannelService channelService = ChannelServiceFactory.getChannelService();
 		String token = channelService.createChannel("bmca_board");
 
-		FileReader reader = new FileReader("board.html");
+		FileReader reader = new FileReader("log_template");
 		CharBuffer buffer = CharBuffer.allocate(16384);
 		reader.read(buffer);
 		String board = new String(buffer.array());

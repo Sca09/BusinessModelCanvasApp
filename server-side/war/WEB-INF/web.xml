@@ -14,17 +14,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>InitBoardServlet</servlet-name>
-		<url-pattern>/board</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>TestBoardServlet</servlet-name>
-		<servlet-class>com.dtorralbo.bmca.channel.SendMessageServlet
-		</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TestBoardServlet</servlet-name>
-		<url-pattern>/test</url-pattern>
+		<url-pattern>/log</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

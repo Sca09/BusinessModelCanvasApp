@@ -52,8 +52,8 @@
 	initialize = function() {
 		openChannel();
 		
-		//google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
-		google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
+		google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
+		//google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
 	}
 
 	</script>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.dtorralbo.bmca.CanvasItem;
 import com.dtorralbo.bmca.PMF;
-import com.dtorralbo.bmca.channel.BoardUpdateService;
+import com.dtorralbo.bmca.channel.LogService;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiMethod.HttpMethod;
@@ -113,7 +113,7 @@ public class CanvasItemEndpoint {
 			mgr.close();
 		}
 		
-		BoardUpdateService.addCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
+		LogService.addCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
 		
 		return canvasitem;
 	}
@@ -138,7 +138,7 @@ public class CanvasItemEndpoint {
 			mgr.close();
 		}
 		
-		BoardUpdateService.updateCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
+		LogService.updateCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
 		
 		return canvasitem;
 	}
@@ -178,7 +178,7 @@ public class CanvasItemEndpoint {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
 			CanvasItem canvasitem = mgr.getObjectById(CanvasItem.class, id);
-			BoardUpdateService.deleteCanvasItemNotification(canvasitem ,request.getHeader("User-Agent"));
+			LogService.deleteCanvasItemNotification(canvasitem ,request.getHeader("User-Agent"));
 
 			mgr.deletePersistent(canvasitem);
 		} finally {
