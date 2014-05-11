@@ -19,33 +19,49 @@
 
 <body>
 
-		<div id="Key Partners" class="category">
-			<div class="categoryTitle">Key Partners</div>
+	<div id="general">
+		<div id="area1">
+			<div id="Key Partners" class="category">
+				<div class="categoryTitle">Key Partners</div>
+			</div>
 		</div>
-		<div id="Key Activities" class="category">
-			<div class="categoryTitle">Key Activities</div>
+		<div id="area2">
+			<div id="Key Activities" class="category">
+				<div class="categoryTitle">Key Activities</div>
+			</div>
+			<div id="Key Resources" class="category">
+				<div class="categoryTitle">Key Resources</div>
+			</div>
 		</div>
-		<div id="Key Resources" class="category">
-			<div class="categoryTitle">Key Resources</div>
+		<div id="area3">
+			<div id="Value Propositions" class="category">
+				<div class="categoryTitle">Value Propositions</div>
+			</div>
 		</div>
-		<div id="Value Propositions" class="category">
-			<div class="categoryTitle">Value Propositions</div>
+		<div id="area4">
+			<div id="Customer Relationships" class="category">
+				<div class="categoryTitle">Customer Relationships</div>
+			</div>
+			<div id="Channels" class="category">
+				<div class="categoryTitle">Channels</div>
+			</div>
 		</div>
-		<div id="Customer Relationships" class="category">
-			<div class="categoryTitle">Customer Relationships</div>
+		<div id="area5">
+			<div id="Customer Segments" class="category">
+				<div class="categoryTitle">Customer Segments</div>
+			</div>
 		</div>
-		<div id="Channels" class="category">
-			<div class="categoryTitle">Channels</div>
+		<div id="area6">
+			<div id="Cost Structure" class="category">
+				<div class="categoryTitle">Cost Structure</div>
+			</div>
 		</div>
-		<div id="Customer Segments" class="category">
-			<div class="categoryTitle">Customer Segments</div>
+		<div id="area7">
+			<div id="Revenue Streams" class="category">
+				<div class="categoryTitle">Revenue Streams</div>
+			</div>
 		</div>
-		<div id="Cost Structure" class="category">
-			<div class="categoryTitle">Cost Structure</div>
-		</div>
-		<div id="Revenue Streams" class="category">
-			<div class="categoryTitle">Revenue Streams</div>
-		</div>
+	</div>
 
 
 	<script type="text/javascript">
@@ -69,8 +85,8 @@
 	initialize = function() {
 		openChannel();
 		
-		google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
-		//google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
+		//google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
+		google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
 	}
 
 	</script>

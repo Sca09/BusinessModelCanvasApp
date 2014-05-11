@@ -130,7 +130,7 @@
 	border-radius:4px;
 	background-color:#f8f8f8;
 	padding:2px;
-	margin:2px;
+	/*margin:2px;*/
 }
 
 .categoryTitle{
@@ -151,6 +151,16 @@
 	margin-top:8px;
 	margin-bottom:8px;
 	/*box-shadow: 1px 1px 1px #888888;*/
+}
+
+div[id='Cost Structure'] .canvasItem{
+	width: 30%;
+	float: left;
+}
+
+div[id='Revenue Streams'] .canvasItem{
+	width: 30%;
+	float: left;
 }
 
 .title{
@@ -178,4 +188,97 @@ hr{
 
 body {
 	background-color: #000e77;
+}
+
+div#general{
+	margin: auto;
+	width: 90%;
+	height: 100%;
+}
+
+div#area1{
+	margin-top: 3px;
+	width: 20%;
+	height: 66%;
+	float: left;
+}
+div#area2{
+	margin-top: 3px;
+	width: 20%;
+	height: 66%;
+	float: left;
+}
+div#area3{
+	margin-top: 3px;
+	width: 20%;
+	height: 66%;
+	float: left;
+}
+div#area4{
+	margin-top: 3px;
+	width: 20%;
+	height: 66%;
+	float: left;
+}
+div#area5{
+	margin-top: 3px;
+	width: 20%;
+	height: 66%;
+	float: left;
+}
+div#area6{
+	width: 50%;
+	height: 33%;
+	clear: left;
+	float: left;
+}
+div#area7{
+	width: 50%;
+	height: 33%;
+	float: left;
+}
+
+div[id='Key Partners']{
+	margin: 2px;
+	height: 97%;
+}
+
+div[id='Key Activities']{
+	margin: 2px;
+	height: 47.5%;
+}
+
+div[id='Key Resources']{
+	margin: 2px;
+	height: 47.5%;
+}
+
+div[id='Value Propositions']{
+	margin: 2px;
+	height: 97%;
+}
+
+div[id='Customer Relationships']{
+	margin: 2px;
+	height: 47.5%;
+}
+
+div[id='Channels']{
+	margin: 2px;
+	height: 47.5%;
+}
+
+div[id='Customer Segments']{
+	margin: 2px;
+	height: 97%;
+}
+
+div[id='Cost Structure']{
+	margin: 2px;
+	height: 97%;
+}
+
+div[id='Revenue Streams']{
+	margin: 2px;
+	height: 97%;	
 }
