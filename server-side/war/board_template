@@ -13,6 +13,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/_ah/channel/jsapi"></script>
 <script type="text/javascript" src="/js/board.js"></script>
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="/css/base.css">
 </head>
 
@@ -68,8 +69,8 @@
 	initialize = function() {
 		openChannel();
 		
-		//google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
-		google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
+		google.endpoints.bmcaApi.init('//localhost:8888/_ah/api');
+		//google.endpoints.bmcaApi.init('//businessmodelcanvasapp.appspot.com/_ah/api');
 	}
 
 	</script>
