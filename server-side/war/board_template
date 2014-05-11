@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- above set at the top of the file will set	 -->
+<!-- the browser's rendering engine into		   -->
+<!-- "Quirks Mode". Replacing this declaration	 -->
 <!-- with a "Standards Mode" doctype is supported, -->
 <!-- but may lead to some differences in layout.   -->
 
@@ -12,23 +12,39 @@
 <title>Business Model Canvas</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/_ah/channel/jsapi"></script>
-<script type="text/javascript" src="/js/log.js"></script>
+<script type="text/javascript" src="/js/board.js"></script>
 <link type="text/css" rel="stylesheet" href="/css/base.css">
 </head>
 
 <body>
-	<div class="CSSTableGenerator">
-		<table id=log_table>
-			<tr>
-				<td>Action</td>
-				<td>User Agent</td>
-				<td>Id</td>
-				<td>Category</td>
-				<td>Title</td>
-				<td>Author</td>
-			</tr>
-		</table>
-	</div>
+
+		<div id="Key Partners" class="category">
+			<div class="categoryTitle">Key Partners</div>
+		</div>
+		<div id="Key Activities" class="category">
+			<div class="categoryTitle">Key Activities</div>
+		</div>
+		<div id="Key Resources" class="category">
+			<div class="categoryTitle">Key Resources</div>
+		</div>
+		<div id="Value Propositions" class="category">
+			<div class="categoryTitle">Value Propositions</div>
+		</div>
+		<div id="Customer Relationships" class="category">
+			<div class="categoryTitle">Customer Relationships</div>
+		</div>
+		<div id="Channels" class="category">
+			<div class="categoryTitle">Channels</div>
+		</div>
+		<div id="Customer Segments" class="category">
+			<div class="categoryTitle">Customer Segments</div>
+		</div>
+		<div id="Cost Structure" class="category">
+			<div class="categoryTitle">Cost Structure</div>
+		</div>
+		<div id="Revenue Streams" class="category">
+			<div class="categoryTitle">Revenue Streams</div>
+		</div>
 
 
 	<script type="text/javascript">

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.dtorralbo.bmca.CanvasItem;
 import com.dtorralbo.bmca.PMF;
+import com.dtorralbo.bmca.channel.BoardUpdateService;
 import com.dtorralbo.bmca.channel.LogService;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -114,6 +115,7 @@ public class CanvasItemEndpoint {
 		}
 		
 		LogService.addCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
+		BoardUpdateService.addCanvasItemNotification(canvasitem.getId());
 		
 		return canvasitem;
 	}
@@ -139,6 +141,7 @@ public class CanvasItemEndpoint {
 		}
 		
 		LogService.updateCanvasItemNotification(canvasitem.getId(), request.getHeader("User-Agent"));
+		BoardUpdateService.updateCanvasItemNotification(canvasitem.getId());
 		
 		return canvasitem;
 	}
@@ -184,6 +187,8 @@ public class CanvasItemEndpoint {
 		} finally {
 			mgr.close();
 		}
+		
+		BoardUpdateService.deleteCanvasItemNotification(id);
 	}
 
 	private boolean containsCanvasItem(CanvasItem canvasitem) {

@@ -9,6 +9,8 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
 public class LogService {
 
+	private static final String CLIENT_ID = "bmca_log";
+
 	public static void addCanvasItemNotification(Long id, String userAgent) {
 		try {
 			JSONObject message = new JSONObject();
@@ -17,7 +19,7 @@ public class LogService {
 			message.append("user_agent", userAgent);
 
 			ChannelService channelService = ChannelServiceFactory.getChannelService();
-			ChannelMessage channelMessage = new ChannelMessage("bmca_board", message.toString());
+			ChannelMessage channelMessage = new ChannelMessage(CLIENT_ID, message.toString());
 
 			channelService.sendMessage(channelMessage);
 
@@ -34,7 +36,7 @@ public class LogService {
 			message.append("user_agent", userAgent);
 
 			ChannelService channelService = ChannelServiceFactory.getChannelService();
-			ChannelMessage channelMessage = new ChannelMessage("bmca_board", message.toString());
+			ChannelMessage channelMessage = new ChannelMessage(CLIENT_ID, message.toString());
 
 			channelService.sendMessage(channelMessage);
 
@@ -55,7 +57,7 @@ public class LogService {
 			message.append("user_agent", userAgent);
 
 			ChannelService channelService = ChannelServiceFactory.getChannelService();
-			ChannelMessage channelMessage = new ChannelMessage("bmca_board", message.toString());
+			ChannelMessage channelMessage = new ChannelMessage(CLIENT_ID, message.toString());
 
 			channelService.sendMessage(channelMessage);
 

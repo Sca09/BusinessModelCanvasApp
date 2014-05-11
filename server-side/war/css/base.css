@@ -124,3 +124,35 @@
 .CSSTableGenerator tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
 }
+
+.category{
+	border:2px solid #bababa;
+	border-radius:4px;
+	background-color:#dbdbdb;
+	padding:2px;
+	margin:2px;
+}
+
+.categoryTitle{
+	text-align: left;
+}
+
+.canvasItem{
+	border:2px solid gray;
+	border-radius:4px;
+	background-color:white;
+	padding:2px;
+	margin:2px;
+}
+
+.title{
+	
+}
+
+.description{
+	
+}
+
+.author{
+	text-align: right;
+}

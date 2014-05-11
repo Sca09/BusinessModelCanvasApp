@@ -44,7 +44,8 @@ google.endpoints.bmcaApi.log = function(action, resp, user_agent) {
 	document.getElementById("log_table").appendChild(canvasItem);
 }
 
-// Channel API functions
+
+// Channel API functions - Log Tool
 onOpened = function() {
 	console.log("channel connected");
 };

@@ -14,18 +14,18 @@ import com.google.appengine.api.channel.ChannelService;
 import com.google.appengine.api.channel.ChannelServiceFactory;
 
 @SuppressWarnings("serial")
-public class BoardServlet extends HttpServlet {
+public class LogServlet extends HttpServlet {
 
-	private static final Logger log = Logger.getLogger(BoardServlet.class.getName());
+	private static final Logger log = Logger.getLogger(LogServlet.class.getName());
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		log.info("init");
 		
 		ChannelService channelService = ChannelServiceFactory.getChannelService();
-		String token = channelService.createChannel("bmca_board");
+		String token = channelService.createChannel("bmca_log");
 
-		FileReader reader = new FileReader("board_template");
+		FileReader reader = new FileReader("log_template");
 		CharBuffer buffer = CharBuffer.allocate(16384);
 		reader.read(buffer);
 		String board = new String(buffer.array());

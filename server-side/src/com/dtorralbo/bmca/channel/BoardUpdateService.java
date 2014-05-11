@@ -9,15 +9,16 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
 public class BoardUpdateService {
 
-	public static void addCanvasItemNotification(Long id, String userAgent) {
+	private static final String CLIENT_ID = "bmca_board";
+
+	public static void addCanvasItemNotification(Long id) {
 		try {
 			JSONObject message = new JSONObject();
-			message.append("action", "add");
+			message.append("action", "Added");
 			message.append("id", id);
-			message.append("user_agent", userAgent);
 
 			ChannelService channelService = ChannelServiceFactory.getChannelService();
-			ChannelMessage channelMessage = new ChannelMessage("bmca_board", message.toString());
+			ChannelMessage channelMessage = new ChannelMessage(CLIENT_ID, message.toString());
 
 			channelService.sendMessage(channelMessage);
 
@@ -26,15 +27,14 @@ public class BoardUpdateService {
 		}
 	}
 	
-	public static void updateCanvasItemNotification(Long id, String userAgent) {
+	public static void updateCanvasItemNotification(Long id) {
 		try {
 			JSONObject message = new JSONObject();
-			message.append("action", "update");
+			message.append("action", "Updated");
 			message.append("id", id);
-			message.append("user_agent", userAgent);
 
 			ChannelService channelService = ChannelServiceFactory.getChannelService();
-			ChannelMessage channelMessage = new ChannelMessage("bmca_board", message.toString());
+			ChannelMessage channelMessage = new ChannelMessage(CLIENT_ID, message.toString());
 
 			channelService.sendMessage(channelMessage);
 
@@ -43,19 +43,14 @@ public class BoardUpdateService {
 		}
 	}
 	
-	public static void deleteCanvasItemNotification(CanvasItem canvasItem, String userAgent) {
+	public static void deleteCanvasItemNotification(Long id) {
 		try {
 			JSONObject message = new JSONObject();
-			message.append("action", "delete");
-			message.append("id", canvasItem.getId());
-			message.append("category", canvasItem.getCategory());
-			message.append("title", canvasItem.getTitle());
-			message.append("description", canvasItem.getDescription());
-			message.append("author", canvasItem.getAuthor());
-			message.append("user_agent", userAgent);
+			message.append("action", "Deleted");
+			message.append("id", id);
 
 			ChannelService channelService = ChannelServiceFactory.getChannelService();
-			ChannelMessage channelMessage = new ChannelMessage("bmca_board", message.toString());
+			ChannelMessage channelMessage = new ChannelMessage(CLIENT_ID, message.toString());
 
 			channelService.sendMessage(channelMessage);
 
