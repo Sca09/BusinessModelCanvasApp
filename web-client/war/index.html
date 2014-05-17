@@ -1,0 +1,104 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Business Model Canvas App</title>
+
+<script type="text/javascript" src="js/base.js"></script>
+
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
+<!-- <script type="text/javascript" src="/js/jquery.touchSwipe.min.js"></script> -->
+
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.6.2.js'></script>
+<script type="text/javascript" src='http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.js'></script>
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css">
+<link type="text/css" rel="stylesheet" href="css/base.css" />
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div data-role="page" id="Key Partners">
+			<div data-role="content">
+				<div class="category">Key Partners</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Key Activities">
+			<div data-role="content">
+			<div class="category">Key Activities</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Key Resources">
+			<div data-role="content">
+			<div class="category">Key Resources</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Value Propositions">
+			<div data-role="content">
+			<div class="category">Value Propositions</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Customer Relationships">
+			<div data-role="content">
+				<div class="category">Customer Relationships</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Channels">
+			<div data-role="content">
+				<div class="category">Channels</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Customer Segments">
+			<div data-role="content">
+				<div class="category">Customer Segments</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Cost Structure">
+			<div data-role="content">
+				<div class="category">Cost Structure</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="Revenue Streams">
+			<div data-role="content">
+				<div class="category">Revenue Streams</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+	<script type='text/javascript'>
+		//<![CDATA[ 
+			$(window).load(changePage());
+		//]]>
+	</script>
+	-->
+	
+	<script type="text/javascript">
+		initialize = function() {
+			changePage();
+			
+			google.endpoints.bmcaApi.init('https://businessmodelcanvasapp.appspot.com/_ah/api');
+		}
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=initialize"></script>
+
+</body>
+</html>
