@@ -45,7 +45,7 @@ changePage = function() {
 	$('div[data-role="page"]').swiperight(function() {
 		if(index > 0) {
 			index--;
-			$.mobile.changePage("#"+ activities[index], { transition: "slide", reverse: true, changeHash:false});
+			$.mobile.changePage("#"+ activities[index], {transition: "slide", reverse: true, changeHash:false});
 		}
 	});
 
