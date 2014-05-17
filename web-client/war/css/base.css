@@ -1,5 +1,5 @@
 .ui-body-c{
-	height: 100%;
+	/*height: 100%;*/
 }
 
 .category{
@@ -23,6 +23,8 @@
 	margin-top:40px;
 	margin-bottom:40px;
 	box-shadow: 0px 2px 2px #888888;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .title{
@@ -45,4 +47,21 @@
 
 hr{
 	border-color: #000e77;
+}
+
+.ui-field-contain .ui-select {
+	width: 100%;
+	display: inline-block;
+}
+
+.ui-btn-text {
+	font-size: 40px;
+}
+
+.ui-btn-inner {
+	padding: 50px;
+}
+
+input.ui-input-text {
+	font-size: 40px;
 }

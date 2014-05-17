@@ -14,8 +14,8 @@
 
 <script type="text/javascript" src="js/base.js"></script>
 <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.js'></script>
-<script type="text/javascript" src='http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.js'></script>
-<link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.css"/>
+<script type="text/javascript" src='http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.js'></script>
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.css"/>
 <link type="text/css" rel="stylesheet" href="css/base.css" />
 
 </head>
@@ -76,16 +76,42 @@
 				<div class="category">Revenue Streams</div>
 			</div>
 		</div>
+		
+		<!-- <div data-role="dialog" id="Update Item" data-close-btn="none"> -->
+		<div data-role="page" id="Update Item" data-close-btn="none">
+			<div data-role="header">
+				<div class="category">Update Item</div>
+			</div>
+			<div data-role="content">
+				<div data-role="fieldcontain" id="updateCategory">
+					<select id="selectCategory">
+						<option value="Key Partners">Key Partners</option>
+						<option value="Key Activities">Key Activities</option>
+						<option value="Key Resources">Key Resources</option>
+						<option value="Value Propositions">Value Propositions</option>
+						<option value="Customer Relationships">Customer Relationships</option>
+						<option value="Channels">Channels</option>
+						<option value="Customer Segments">Customer Segments</option>
+						<option value="Cost Structure">Cost Structure</option>
+						<option value="Revenue Streams">Revenue Streams</option>
+					</select>
+				</div>
+				<input type="hidden" id="updateId"/>
+				<input type="text" id="updateTitle" placeholder="Title" />
+				<input type="text" id="updateDescription" placeholder="Description" />
+				<input type="text" id="updateAuthor" placeholder="Author" />
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<a href="#" data-role="button" id="update" style="background: #000e77; color: white;" onclick="google.endpoints.bmcaApi.update();">Update</a>
+				<a href="#" data-role="button" id="delete" style="background: #c42d2d; color: white;" onclick="google.endpoints.bmcaApi.remove();">Delete</a>
+				<a href="#" data-role="button" id="cancel" style="background: #000e77; color: white;" onclick="backPage();">Cancel</a>
+			</div>
+		</div>
 	</div>
 
-	<!--
-	<script type='text/javascript'>
-		//<![CDATA[ 
-			$(window).load(changePage());
-		//]]>
-	</script>
-	-->
-	
 	<script type="text/javascript">
 		initialize = function() {
 			changePage();

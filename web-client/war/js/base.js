@@ -18,14 +18,73 @@ google.endpoints.bmcaApi.list = function() {
 	gapi.client.bmca.item.list().execute(function(resp) {
 		if (resp.items) {
 			for (var i = 0; i < resp.items.length; i++) {
-				var canvasItem = $('<div id=\"'+ resp.items[i].id +'\"class=\"canvasItem\"><div class=\"title\">'+ resp.items[i].title +'</div><hr><div class=\"description\">'+ resp.items[i].description +'</div><hr><div class=\"author\">'+ resp.items[i].author +'</div></div>');
-				var content = $('[id="'+ resp.items[i].category+ '"]').children('div[data-role="content"]');
-				
-				canvasItem.appendTo(content);
+				addItem(resp.items[i]);
 			}
 		}
 	});
 };
+
+google.endpoints.bmcaApi.update = function() {
+	var updateId = $('[id="updateId"]').val();
+	var updateCategory = $('[id="updateCategory"] :selected').val();
+	var updateTitle = $('[id="updateTitle"]').val();
+	var updateDescription = $('[id="updateDescription"]').val();
+	var updateAuthor = $('[id="updateAuthor"]').val();
+	
+	var item = {
+		id : updateId,
+		category : updateCategory,
+		title : updateTitle,
+		description : updateDescription,
+		author : updateAuthor
+	};
+	
+	gapi.client.bmca.item.update({'id': item.id, 'category': item.category, 'title' : item.title, 'description': item.description, 'author' : item.author}).execute(function(resp) {
+		if (resp) {
+			$('[id=\"'+ resp.id +'\"]').remove();
+			
+			addItem(resp);
+			
+			goToPage(resp.category);
+		}
+	});
+}
+
+google.endpoints.bmcaApi.remove = function() {
+	var id = $('[id="updateId"]').val();
+	
+	gapi.client.bmca.item.delete({'id': id}).execute(function(resp) {
+		$('[id=\"'+ id +'\"]').remove();
+		
+		backPage();
+	});
+}
+
+addItem = function(item){
+	var canvasItem = $('<div id=\"'+ item.id +'\" class=\"canvasItem\" data-category=\"'+ item.category +'\"><div class=\"title\">'+ item.title +'</div><hr><div class=\"description\">'+ item.description +'</div><hr><div class=\"author\">'+ item.author +'</div></div>');
+	canvasItem.click(function(){
+		$(this).on('tap', editItem($(this)[0].id));
+	});
+	
+	var content = $('[id="'+ item.category+ '"]').children('div[data-role="content"]');
+	canvasItem.appendTo(content);
+}
+
+editItem = function (id){
+	var category = $('[id=\"'+ id +'\"]').data("category");
+	var title = $('[id=\"'+ id +'\"]').find('.title')[0].textContent;
+	var description = $('[id=\"'+ id +'\"]').find('.description')[0].textContent;
+	var author = $('[id=\"'+ id +'\"]').find('.author')[0].textContent;
+
+	$('[id="updateCategory"] option[value=\"'+ category +'\"]').attr('selected', 'selected');
+	$('[id="updateId"]').val(id);
+	$('[id="updateCategory"]').val(category);
+	$('[id="updateTitle"]').val(title);
+	$('[id="updateDescription"]').val(description);
+	$('[id="updateAuthor"]').val(author);
+	
+	$.mobile.changePage('#Update Item', {transition: "slidedown", changeHash:false});
+}
 
 var index = 0;
 
@@ -55,4 +114,14 @@ changePage = function() {
 			$.mobile.changePage("#"+ activities[index], {transition: "slide", changeHash:false});
 		}
 	});
+}
+
+goToPage = function(category) {
+	var categoryIndex = activities.indexOf(category);
+	index = categoryIndex;
+	$.mobile.changePage("#"+ activities[index], {transition: "slideup", changeHash:false});
+}
+
+backPage = function() {
+	$.mobile.changePage("#"+ activities[index], {transition: "slideup", changeHash:false});
 }

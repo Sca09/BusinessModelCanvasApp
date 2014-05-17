@@ -6,7 +6,7 @@ google.endpoints.bmcaApi = google.endpoints.bmcaApi || {};
 
 google.endpoints.bmcaApi.init = function(apiRoot) {
 	var callback = function() {
-		alert("bmca API uploaded");
+//		alert("bmca API uploaded");
 	}
 
 	gapi.client.load('bmca', 'v1', callback, apiRoot);
