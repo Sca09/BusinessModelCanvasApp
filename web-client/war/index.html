@@ -21,69 +21,141 @@
 </head>
 
 <body>
-	<div class="container">
 
+	<div class="container">
 		<div data-role="page" id="Key Partners">
-			<div data-role="content">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
+				
 				<div class="category">Key Partners</div>
+			</div>
+			<div data-role="content">
 			</div>
 		</div>
 		
 		<div data-role="page" id="Key Activities">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
+				<div class="category">Key Activities</div>
+			</div>
 			<div data-role="content">
-			<div class="category">Key Activities</div>
 			</div>
 		</div>
 		
 		<div data-role="page" id="Key Resources">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
+				<div class="category">Key Resources</div>
+			</div>
 			<div data-role="content">
-			<div class="category">Key Resources</div>
 			</div>
 		</div>
 		
 		<div data-role="page" id="Value Propositions">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
+				<div class="category">Value Propositions</div>
+			</div>
 			<div data-role="content">
-			<div class="category">Value Propositions</div>
 			</div>
 		</div>
 		
 		<div data-role="page" id="Customer Relationships">
-			<div data-role="content">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
 				<div class="category">Customer Relationships</div>
+			</div>
+			<div data-role="content">
 			</div>
 		</div>
 		
 		<div data-role="page" id="Channels">
-			<div data-role="content">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
 				<div class="category">Channels</div>
+			</div>
+			<div data-role="content">
 			</div>
 		</div>
 		
 		<div data-role="page" id="Customer Segments">
-			<div data-role="content">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
 				<div class="category">Customer Segments</div>
+			</div>
+			<div data-role="content">
 			</div>
 		</div>
 		
 		<div data-role="page" id="Cost Structure">
-			<div data-role="content">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
 				<div class="category">Cost Structure</div>
+			</div>
+			<div data-role="content">
 			</div>
 		</div>
 		
 		<div data-role="page" id="Revenue Streams">
-			<div data-role="content">
+			<div data-role="header" data-position="fixed">
+				<div id="headerGroup">
+					<div data-role="controlgroup" data-type="horizontal" >
+						<a href="#" data-role="button" onclick="showNewItemPage();" style="padding: 15px;">Add</a>
+						<a href="#" data-role="button" onclick="refreshItems();" style="padding: 15px;">Refresh</a>
+					</div>
+				</div>
 				<div class="category">Revenue Streams</div>
+			</div>
+			<div data-role="content">
 			</div>
 		</div>
 		
-		<!-- <div data-role="dialog" id="Update Item" data-close-btn="none"> -->
 		<div data-role="page" id="Update Item" data-close-btn="none">
 			<div data-role="header">
-				<div class="category">Update Item</div>
+				<div class="category">Update Activity</div>
 			</div>
 			<div data-role="content">
-				<div data-role="fieldcontain" id="updateCategory">
+				<div data-role="fieldcontain" id="updateCategory" style="margin:0 auto; margin-left:auto; margin-right:auto; align:center; text-align:center;">
 					<select id="selectCategory">
 						<option value="Key Partners">Key Partners</option>
 						<option value="Key Activities">Key Activities</option>
@@ -100,14 +172,44 @@
 				<input type="text" id="updateTitle" placeholder="Title" />
 				<input type="text" id="updateDescription" placeholder="Description" />
 				<input type="text" id="updateAuthor" placeholder="Author" />
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<a href="#" data-role="button" id="update" style="background: #000e77; color: white;" onclick="google.endpoints.bmcaApi.update();">Update</a>
-				<a href="#" data-role="button" id="delete" style="background: #c42d2d; color: white;" onclick="google.endpoints.bmcaApi.remove();">Delete</a>
-				<a href="#" data-role="button" id="cancel" style="background: #000e77; color: white;" onclick="backPage();">Cancel</a>
+				<div id="navgroup">
+					<div data-role="controlgroup" data-type="horizontal" style="margin-top: 100px">
+						<a href="#" data-role="button" id="cancel" style="color: #000e77;" onclick="backPage();">Cancel</a>
+						<a href="#" data-role="button" id="delete" style="color: #c42d2d;" onclick="google.endpoints.bmcaApi.remove();">Delete</a>
+						<a href="#" data-role="button" id="update" style="color: #000e77;" onclick="google.endpoints.bmcaApi.update();">Update</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div data-role="page" id="New Item" data-close-btn="none">
+			<div data-role="header">
+				<div class="category">New Activity</div>
+			</div>
+			<div data-role="content">
+				<div data-role="fieldcontain" id="addCategory" style="margin:0 auto; margin-left:auto; margin-right:auto; align:center; text-align:center;">
+					<select id="selectCategory">
+						<option value="Key Partners">Key Partners</option>
+						<option value="Key Activities">Key Activities</option>
+						<option value="Key Resources">Key Resources</option>
+						<option value="Value Propositions">Value Propositions</option>
+						<option value="Customer Relationships">Customer Relationships</option>
+						<option value="Channels">Channels</option>
+						<option value="Customer Segments">Customer Segments</option>
+						<option value="Cost Structure">Cost Structure</option>
+						<option value="Revenue Streams">Revenue Streams</option>
+					</select>
+				</div>
+				<input type="hidden" id="addId"/>
+				<input type="text" id="addTitle" placeholder="Title" />
+				<input type="text" id="addDescription" placeholder="Description" />
+				<input type="text" id="addAuthor" placeholder="Author" />
+				<div id="navgroup">
+					<div data-role="controlgroup" data-type="horizontal" style="margin-top: 100px">
+						<a href="#" data-role="button" id="cancel" style="color: #000e77;" onclick="backPage();">Cancel</a>
+						<a href="#" data-role="button" id="add" style="color: #000e77;" onclick="google.endpoints.bmcaApi.add();">Add</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

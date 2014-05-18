@@ -24,6 +24,26 @@ google.endpoints.bmcaApi.list = function() {
 	});
 };
 
+google.endpoints.bmcaApi.add = function() {
+	var addCategory = $('[id="addCategory"] :selected').val();
+	var addTitle = $('[id="addTitle"]').val();
+	var addDescription = $('[id="addDescription"]').val();
+	var addAuthor = $('[id="addAuthor"]').val();
+	
+	gapi.client.bmca.item.add({'category': addCategory, 'title' : addTitle, 'description': addDescription, 'author' : addAuthor}).execute(function(resp) {
+		if (resp) {
+			addItem(resp);
+			
+			$('[id="addCategory"] option[value=\"'+ activities[0] +'\"]').attr('selected', 'selected');
+			$('[id="addTitle"]').val("");
+			$('[id="addDescription"]').val("");
+			$('[id="addAuthor"]').val("");
+			
+			goToPage(resp.category);
+		}
+	});
+}
+
 google.endpoints.bmcaApi.update = function() {
 	var updateId = $('[id="updateId"]').val();
 	var updateCategory = $('[id="updateCategory"] :selected').val();
@@ -31,15 +51,7 @@ google.endpoints.bmcaApi.update = function() {
 	var updateDescription = $('[id="updateDescription"]').val();
 	var updateAuthor = $('[id="updateAuthor"]').val();
 	
-	var item = {
-		id : updateId,
-		category : updateCategory,
-		title : updateTitle,
-		description : updateDescription,
-		author : updateAuthor
-	};
-	
-	gapi.client.bmca.item.update({'id': item.id, 'category': item.category, 'title' : item.title, 'description': item.description, 'author' : item.author}).execute(function(resp) {
+	gapi.client.bmca.item.update({'id': updateId, 'category': updateCategory, 'title' : updateTitle, 'description': updateDescription, 'author' : updateAuthor}).execute(function(resp) {
 		if (resp) {
 			$('[id=\"'+ resp.id +'\"]').remove();
 			
@@ -63,20 +75,24 @@ google.endpoints.bmcaApi.remove = function() {
 addItem = function(item){
 	var canvasItem = $('<div id=\"'+ item.id +'\" class=\"canvasItem\" data-category=\"'+ item.category +'\"><div class=\"title\">'+ item.title +'</div><hr><div class=\"description\">'+ item.description +'</div><hr><div class=\"author\">'+ item.author +'</div></div>');
 	canvasItem.click(function(){
-		$(this).on('tap', editItem($(this)[0].id));
+		$(this).on('tap', showEditItemPage($(this)[0].id));
 	});
 	
 	var content = $('[id="'+ item.category+ '"]').children('div[data-role="content"]');
 	canvasItem.appendTo(content);
 }
 
-editItem = function (id){
+showEditItemPage = function (id){
 	var category = $('[id=\"'+ id +'\"]').data("category");
 	var title = $('[id=\"'+ id +'\"]').find('.title')[0].textContent;
 	var description = $('[id=\"'+ id +'\"]').find('.description')[0].textContent;
 	var author = $('[id=\"'+ id +'\"]').find('.author')[0].textContent;
 
 	$('[id="updateCategory"] option[value=\"'+ category +'\"]').attr('selected', 'selected');
+	
+	$('[id="selectCategory"]').selectmenu();
+	$('[id="selectCategory"]').selectmenu("refresh", true);
+	
 	$('[id="updateId"]').val(id);
 	$('[id="updateCategory"]').val(category);
 	$('[id="updateTitle"]').val(title);
@@ -84,6 +100,18 @@ editItem = function (id){
 	$('[id="updateAuthor"]').val(author);
 	
 	$.mobile.changePage('#Update Item', {transition: "slidedown", changeHash:false});
+}
+
+showNewItemPage = function (){
+	$('[id="addCategory"] option[value=\"'+ activities[index] +'\"]').attr('selected', 'selected');
+	
+	$.mobile.changePage('#New Item', {transition: "slidedown", changeHash:false});
+}
+
+refreshItems = function() {
+	$('.canvasItem').remove();
+
+	google.endpoints.bmcaApi.list();	
 }
 
 var index = 0;

@@ -1,7 +1,3 @@
-.ui-body-c{
-	/*height: 100%;*/
-}
-
 .category{
 	text-align: center;
 	background-color: #000e77;
@@ -64,4 +60,24 @@ hr{
 
 input.ui-input-text {
 	font-size: 40px;
+}
+
+#navgroup {
+	text-align:center;
+}
+
+#navgroup div {
+	display:inline-block;
+}
+
+#headerGroup {
+	text-align:right;
+}
+
+#headerGroup .ui-btn-inner {
+	border: 0px;
+}
+
+#headerGroup .ui-controlgroup {
+	margin: 2px;
 }
