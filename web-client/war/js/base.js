@@ -42,7 +42,7 @@ google.endpoints.bmcaApi.add = function() {
 			goToPage(resp.category);
 		}
 	});
-}
+};
 
 google.endpoints.bmcaApi.update = function() {
 	var updateId = $('[id="updateId"]').val();
@@ -60,7 +60,7 @@ google.endpoints.bmcaApi.update = function() {
 			goToPage(resp.category);
 		}
 	});
-}
+};
 
 google.endpoints.bmcaApi.remove = function() {
 	var id = $('[id="updateId"]').val();
@@ -70,7 +70,7 @@ google.endpoints.bmcaApi.remove = function() {
 		
 		backPage();
 	});
-}
+};
 
 addItem = function(item){
 	var canvasItem = $('<div id=\"'+ item.id +'\" class=\"canvasItem\" data-category=\"'+ item.category +'\"><div class=\"title\">'+ item.title +'</div><hr><div class=\"description\">'+ item.description +'</div><hr><div class=\"author\">'+ item.author +'</div></div>');
@@ -80,7 +80,7 @@ addItem = function(item){
 	
 	var content = $('[id="'+ item.category+ '"]').children('div[data-role="content"]');
 	canvasItem.appendTo(content);
-}
+};
 
 showEditItemPage = function (id){
 	var category = $('[id=\"'+ id +'\"]').data("category");
@@ -100,19 +100,19 @@ showEditItemPage = function (id){
 	$('[id="updateAuthor"]').val(author);
 	
 	$.mobile.changePage('#Update Item', {transition: "slidedown", changeHash:false});
-}
+};
 
 showNewItemPage = function (){
 	$('[id="addCategory"] option[value=\"'+ activities[index] +'\"]').attr('selected', 'selected');
 	
 	$.mobile.changePage('#New Item', {transition: "slidedown", changeHash:false});
-}
+};
 
 refreshItems = function() {
 	$('.canvasItem').remove();
 
 	google.endpoints.bmcaApi.list();	
-}
+};
 
 var index = 0;
 
@@ -128,7 +128,7 @@ var activities = [
                   "Revenue Streams"
                   ];
 
-changePage = function() {
+registerListener = function() {
 	$('div[data-role="page"]').swiperight(function() {
 		if(index > 0) {
 			index--;
@@ -142,14 +142,14 @@ changePage = function() {
 			$.mobile.changePage("#"+ activities[index], {transition: "slide", changeHash:false});
 		}
 	});
-}
+};
 
 goToPage = function(category) {
 	var categoryIndex = activities.indexOf(category);
 	index = categoryIndex;
 	$.mobile.changePage("#"+ activities[index], {transition: "slideup", changeHash:false});
-}
+};
 
 backPage = function() {
 	$.mobile.changePage("#"+ activities[index], {transition: "slideup", changeHash:false});
-}
+};
