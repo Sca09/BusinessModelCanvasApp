@@ -46,9 +46,10 @@ hr{
 }
 
 .ui-field-contain .ui-select {
-	width: 100%;
+	width: 81%;
 	display: inline-block;
 }
+
 
 .ui-btn-text {
 	font-size: 40px;
@@ -60,6 +61,12 @@ hr{
 
 input.ui-input-text {
 	font-size: 40px;
+}
+
+div.ui-input-text {
+	padding: 0 .4em;
+	width: 80%;
+	margin: 15px auto;
 }
 
 #navgroup {
