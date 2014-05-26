@@ -32,7 +32,6 @@ google.endpoints.bmcaApi.list = function() {
 
 google.endpoints.bmcaApi.added = function(message) {
 	var id = message.id;
-	var action = message.action;
 
 	gapi.client.bmca.item.get({'id' : id[0]}).execute(function(resp) {
 		if (resp) {
@@ -51,7 +50,6 @@ google.endpoints.bmcaApi.added = function(message) {
 
 google.endpoints.bmcaApi.updated = function(message) {
 	var id = message.id;
-	var action = message.action;
 
 	gapi.client.bmca.item.get({'id' : id[0]}).execute(function(resp) {
 		if (resp) {
@@ -71,13 +69,6 @@ google.endpoints.bmcaApi.updated = function(message) {
 google.endpoints.bmcaApi.deleted = function(message) {
 	document.getElementById(message.id).remove();
 }
-
-google.endpoints.bmcaApi.log = function(action, resp, user_agent) {
-	var canvasItem = document.createElement('tr');
-	canvasItem.innerHTML = "<td>" + action + "</td><td>" + user_agent+ "</td><td>" + resp.id + "</td><td>" + resp.category + "</td><td>"+ resp.title + "</td><td>" + resp.author + "</td>";
-	document.getElementById("log_table").appendChild(canvasItem);
-};
-
 
 // Channel API functions - Log Tool
 onOpened = function() {
