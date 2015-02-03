@@ -45,6 +45,22 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "bmca.item.add" : {
+      "path" : "canvasitem",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.dtorralbo.bmca.spi.CanvasItemEndpoint.insertCanvasItem",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "bmca.item.changeCategory" : {
       "path" : "changeCanvasItemCategory/{id}/{category}",
       "httpMethod" : "POST",
@@ -70,17 +86,26 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "bmca.item.add" : {
+    "bmca.item.list" : {
       "path" : "canvasitem",
-      "httpMethod" : "POST",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.dtorralbo.bmca.spi.CanvasItemEndpoint.insertCanvasItem",
+      "rosyMethod" : "com.dtorralbo.bmca.spi.CanvasItemEndpoint.listCanvasItem",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -121,31 +146,6 @@
       },
       "response" : {
         "body" : "empty"
-      }
-    },
-    "bmca.item.list" : {
-      "path" : "canvasitem",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.dtorralbo.bmca.spi.CanvasItemEndpoint.listCanvasItem",
-      "request" : {
-        "parameters" : {
-          "cursor" : {
-            "type" : "string",
-            "required" : false
-          },
-          "limit" : {
-            "type" : "int32",
-            "required" : false
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -195,17 +195,22 @@
           "$ref" : "CanvasItem"
         }
       },
-      "com.dtorralbo.bmca.spi.CanvasItemEndpoint.changeCanvasItemCategory" : {
-        "response" : {
-          "$ref" : "CanvasItem"
-        }
-      },
       "com.dtorralbo.bmca.spi.CanvasItemEndpoint.insertCanvasItem" : {
         "request" : {
           "$ref" : "CanvasItem"
         },
         "response" : {
           "$ref" : "CanvasItem"
+        }
+      },
+      "com.dtorralbo.bmca.spi.CanvasItemEndpoint.changeCanvasItemCategory" : {
+        "response" : {
+          "$ref" : "CanvasItem"
+        }
+      },
+      "com.dtorralbo.bmca.spi.CanvasItemEndpoint.listCanvasItem" : {
+        "response" : {
+          "$ref" : "CollectionResponse_CanvasItem"
         }
       },
       "com.dtorralbo.bmca.spi.CanvasItemEndpoint.updateCanvasItem" : {
@@ -217,11 +222,6 @@
         }
       },
       "com.dtorralbo.bmca.spi.CanvasItemEndpoint.removeCanvasItem" : {
-      },
-      "com.dtorralbo.bmca.spi.CanvasItemEndpoint.listCanvasItem" : {
-        "response" : {
-          "$ref" : "CollectionResponse_CanvasItem"
-        }
       }
     }
   }
