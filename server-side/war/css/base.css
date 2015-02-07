@@ -1,5 +1,6 @@
 .CSSTableGenerator {
-	margin:0px;padding:0px;
+	margin:0px;
+	padding:0px;
 	width:100%;
 	border:1px solid #ffffff;
 	
@@ -137,7 +138,7 @@
 	text-align: left;
 	font-family: 'open sans',arial,sans-serif;
 	font-weight: bold;
-	font-size: medium;
+	font-size: 1.8vw;
 	margin: 10px;
 }
 
@@ -166,13 +167,13 @@ div[id='Revenue Streams'] .canvasItem{
 .title{
 	font-family: 'open sans',arial,sans-serif;
 	font-weight: bold;
-	font-size: medium;
+	font-size: 1.7vw;
 }
 
 .description{
 	font-family: 'open sans',arial,sans-serif;
 	font-weight: lighter;
-	font-size: small;
+	font-size: 1.4vw;
 }
 
 .author{
@@ -187,7 +188,7 @@ hr{
 }
 
 body {
-	background-color: #000e77;
+	background-color: #0C144C;
 }
 
 div#general{
