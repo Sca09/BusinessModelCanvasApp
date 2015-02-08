@@ -128,21 +128,25 @@ var activities = [
                   "Revenue Streams"
                   ];
 
-registerListener = function() {
-	$('div[data-role="page"]').swiperight(function() {
-		if(index > 0) {
-			index--;
-			$.mobile.changePage("#"+ activities[index], {transition: "slide", reverse: true, changeHash:false});
-		}
-	});
 
-	$('div[data-role="page"]').swipeleft(function() {
-		if(index < (activities.length - 1)) {
-			index++;
-			$.mobile.changePage("#"+ activities[index], {transition: "slide", changeHash:false});
-		}
+registerListener = function() {   
+	$('div[data-role="page"]').swipe( {
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+          if(direction == 'right') {
+        	  if(index > 0) {
+        		  index--;
+        		  $.mobile.changePage("#"+ activities[index], {transition: "slide", reverse: true, changeHash:false});
+        	  }
+          } else if (direction == 'left') {
+        	  if(index < (activities.length - 1)) {
+        		  index++;
+        		  $.mobile.changePage("#"+ activities[index], {transition: "slide", changeHash:false});
+        	  }
+          }
+        }
 	});
 };
+
 
 goToPage = function(category) {
 	var categoryIndex = activities.indexOf(category);

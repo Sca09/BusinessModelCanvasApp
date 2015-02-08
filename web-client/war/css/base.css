@@ -3,7 +3,7 @@
 	background-color: #000e77;
 	font-family: 'open sans',arial,sans-serif;
 	font-weight: normal;
-	font-size: 4vh;
+	font-size: 7vw;
 	color: white;
 	padding: 15px;
 }
@@ -12,12 +12,8 @@
 	border:3px solid #000e77;
 	border-radius:15px;
 	background-color:white;
-	padding:25px;
-	padding-bottom: 10px;
-	margin-right:40px;
-	margin-left:40px;
-	margin-top:40px;
-	margin-bottom:40px;
+	padding: 2vw;
+	margin: 3vw;
 	box-shadow: 0px 2px 2px #888888;
 	cursor: pointer;
 	cursor: hand;
@@ -25,20 +21,20 @@
 
 .title{
 	font-family: 'open sans',arial,sans-serif;
-	font-size: 5vh;
+	font-size: 6vw;
 }
 
 .description{
 	font-family: 'open sans',arial,sans-serif;
 	font-weight: lighter;
-	font-size: 3vh;
+	font-size: 4vw;
 }
 
 .author{
 	text-align: right;
 	font-family: 'open sans',arial,sans-serif;
 	font-weight: lighter;
-	font-size: 2.5vh;
+	font-size: 3vw;
 }
 
 hr{
@@ -52,15 +48,15 @@ hr{
 
 
 .ui-btn-text {
-	font-size: 40px;
+	font-size: 6vw;
 }
 
 .ui-btn-inner {
-	padding: 50px;
+	padding: 4vw;
 }
 
 input.ui-input-text {
-	font-size: 40px;
+	font-size: 5vw;
 }
 
 div.ui-input-text {
